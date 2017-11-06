@@ -1,13 +1,9 @@
 package org.jnity.starstone.gui;
 
-import java.awt.GraphicsDevice;
-import java.awt.GraphicsEnvironment;
-import java.io.File;
-import java.io.IOException;
-import java.util.concurrent.ConcurrentLinkedQueue;
-
-import javax.imageio.ImageIO;
-
+import base.Camera;
+import base.Object3d;
+import base.Scene;
+import materials.Texture2D;
 import org.jnity.starstone.cards.Card;
 import org.jnity.starstone.cards.CreatureCard;
 import org.jnity.starstone.core.Game;
@@ -19,15 +15,18 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.util.vector.Vector3f;
 
-import base.Camera;
-import base.Object3d;
-import base.Scene;
-import materials.Texture2D;
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class GameGui extends Thread implements GameListener {
 
 	public static final String SUMMON_SICK = "SUMMON_SICK";
+	public static final String AFTER_ATACK = "AFTER_ATACK";
 	public static final String CANT_ATACK = "CANT_ATACK";
+	
 	public static final String NEED_MORE_RESOURSES = "NEED_MORE_RESOURSES";
 	private final ConcurrentLinkedQueue<StoredEvent> events = new ConcurrentLinkedQueue<>();
 	private Game game;
@@ -65,7 +64,6 @@ public class GameGui extends Thread implements GameListener {
 			camera.getPosition().move(0, -10, 0).roll(90).turn(90);
 			scene.setBackColor(new Vector3f(0.5f, 1, 0.5f));
 			long sysTime = 0;
-			float time = 0;
 			mouseProcess = new MouseProcess(scene, camera, game, this);
 			while (!Display.isCloseRequested()) {
 				float deltaTime = 0;
@@ -74,8 +72,6 @@ public class GameGui extends Thread implements GameListener {
 					//if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT))
 						deltaTime *= 10;
 				}
-				//System.out.println(deltaTime);
-				time += deltaTime;
 				sysTime = System.currentTimeMillis();
 				mouseProcess.tick();
 

@@ -10,11 +10,8 @@ public class Mutalisk extends CreatureCard {
         super("MUTALISK", 3, 0, 2, 4);
     }
 
-    //Charge
     @Override
     public void play(CreatureCard target){
         super.play(target);
-//        super.attack(target); //Something like that?
-
     }
 }

@@ -15,4 +15,9 @@ public class SecondChance extends CreatureModifier {
             return 0;
         }else return value;
     }
+
+    @Override
+    public boolean canBeDuplicated() {
+        return false;
+    }
 }

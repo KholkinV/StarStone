@@ -1,9 +1,5 @@
 package org.jnity.starstone.run;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
 import org.jnity.starstone.cards.Card;
 import org.jnity.starstone.core.Game;
 import org.jnity.starstone.core.Player;
@@ -14,6 +10,10 @@ import org.jnity.starstone.nerazim.creatures.DarkStalker;
 import org.jnity.starstone.protoss.creatures.ShieldRecharge;
 import org.jnity.starstone.protoss.creatures.ShildBattery;
 import org.jnity.starstone.protoss.creatures.Zealot;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class HotSeatRunner {
 	public static void main(String[] args) throws IOException {

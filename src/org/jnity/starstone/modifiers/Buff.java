@@ -4,23 +4,23 @@ import org.jnity.starstone.cards.CreatureCard;
 
 public class Buff extends CreatureModifier {
 
-    private int powerBuff;
-    private int hitsBuff;
+    private static int POWER_BUFF;
+    private int HITS_BUFF;
 
     public Buff(CreatureCard target, int powerBuff, int hitsBuff) {
         super(target);
-        this.powerBuff = powerBuff;
-        this.hitsBuff = hitsBuff;
+        this.POWER_BUFF = powerBuff;
+        this.HITS_BUFF = hitsBuff;
     }
 
     @Override
     public int modifyPower(int value, CreatureCard creatureCard){
-        return value + powerBuff;
+        return value + POWER_BUFF;
     }
 
     @Override
     public int modifyMaxHits(int value, CreatureCard creatureCard){
-        return value + hitsBuff;
+        return value + HITS_BUFF;
     }
 
 

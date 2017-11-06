@@ -1,6 +1,9 @@
 package org.jnity.starstone.zerg.creatures;
 
 import org.jnity.starstone.cards.CreatureCard;
+import org.jnity.starstone.modifiers.CombatFatigue;
+import org.jnity.starstone.modifiers.PlasmaShield;
+
 
 public class Ravager extends CreatureCard {
 
@@ -10,14 +13,19 @@ public class Ravager extends CreatureCard {
         super("RAVAGER", 0, 0, 4, 3);
     }
 
-//    @Override
-//    public void attack(CreatureCard target){
-//        List modifiers = target.getModifiers();
-//        for(int i = 0; i < modifiers.size(); i++) {
-//            if (modifiers.get(i) instanceof PlasmaShield){
-//                target.removeModifier((Modifier) modifiers.get(i));
-//            }
-//        }
-//        super.attack(target);
-//    }
+    @Override
+    public boolean isHasSpecialAttack() {
+        return true;
+    }
+
+    @Override
+    public void specialAttack(CreatureCard target){
+        target.getModifiers().forEach(m -> {
+            if(m instanceof PlasmaShield){
+                target.removeModifier(m);
+            }
+        });
+        target.takeDamage(this.getPower());
+        addModifier(new CombatFatigue(this));
+    }
 }

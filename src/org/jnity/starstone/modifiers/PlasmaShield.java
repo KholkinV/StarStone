@@ -15,6 +15,7 @@ public class PlasmaShield extends CreatureModifier  {
 		}
 		return 0;
 	}
+
 	@Override
 	public boolean canBeDuplicated() {
 		return false;

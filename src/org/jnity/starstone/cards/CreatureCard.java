@@ -13,12 +13,17 @@ public class CreatureCard extends Card {
 	private int maxHits;
 	private int currentHits;
 	private int power;
+	private boolean hasSpecialAttack;
 
 	public CreatureCard(String ID, int priceInMineral, int priceInGas, int maxHits, int power) {
 		super(ID, priceInMineral, priceInGas);
 		this.maxHits = maxHits;
 		this.power = power;
 		this.currentHits = getMaxHits();
+	}
+
+	public boolean isHasSpecialAttack() {
+		return hasSpecialAttack;
 	}
 
 	public int getMaxHits() {
@@ -84,5 +89,9 @@ public class CreatureCard extends Card {
 		for (Modifier modifier : getModifiers())
 			result = modifier.modifyCanAtack(result, this);
 		return result;
+	}
+
+	public void specialAttack(CreatureCard target){
+		return;
 	}
 }

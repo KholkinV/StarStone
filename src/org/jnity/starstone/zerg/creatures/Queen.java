@@ -1,13 +1,13 @@
 package org.jnity.starstone.zerg.creatures;
 
-import java.util.List;
-
 import org.jnity.starstone.cards.Card;
 import org.jnity.starstone.cards.CreatureCard;
 import org.jnity.starstone.core.Debug;
 import org.jnity.starstone.events.GameEvent;
 import org.jnity.starstone.events.GameListener;
 import org.jnity.starstone.modifiers.Buff;
+
+import java.util.List;
 
 public class Queen extends CreatureCard implements GameListener{
 
@@ -41,17 +41,11 @@ public class Queen extends CreatureCard implements GameListener{
         }
 
         if(GameEvent.DIES == gameEvent && card.equals(this)){
-            List<CreatureCard> creatures = getOwner().getCreatures();
 
-            for(int i = 0; i < creatures.size(); i++) {
-                for (int j = 0; j < creatures.get(i).getModifiers().size(); j++) {
-                    if (creatures.get(i).getModifiers().get(j) instanceof Buff){
-                        creatures.get(i).removeModifier(creatures.get(i).getModifiers().get(j));
-                        Debug.print("TurnAttackBuff disable");
-                        break;
-                    }
-                }
-            }
+            List<CreatureCard> creatures = getOwner().getCreatures();
+            creatures.forEach((c) -> c.getModifiers().forEach((m) -> {
+                if(m instanceof Buff) c.removeModifier(m);
+            }));
         }
     }
 }

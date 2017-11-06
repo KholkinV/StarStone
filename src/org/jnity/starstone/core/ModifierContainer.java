@@ -1,9 +1,9 @@
 package org.jnity.starstone.core;
 
+import org.jnity.starstone.modifiers.Modifier;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import org.jnity.starstone.modifiers.Modifier;
 
 public class ModifierContainer extends GamePart {
 	private final ArrayList<Modifier> modifiers = new ArrayList<>();
@@ -21,4 +21,9 @@ public class ModifierContainer extends GamePart {
 	public void removeModifier(Modifier modifier) {
 		modifiers.remove(modifier);
 	}
+	
+	public boolean hasModifier(Class<? extends Modifier> modifierType) {
+		return getModifiers().stream().anyMatch(m -> m.getClass() == modifierType);
+	}
+	
 }

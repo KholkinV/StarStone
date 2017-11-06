@@ -1,19 +1,26 @@
 package org.jnity.starstone.zerg.creatures;
 
 import org.jnity.starstone.cards.CreatureCard;
-import org.jnity.starstone.events.GameListener;
+import org.jnity.starstone.modifiers.CombatFatigue;
+import org.jnity.starstone.modifiers.Poison;
 
-public class Baneling extends CreatureCard implements GameListener{
+public class Baneling extends CreatureCard{
     private static final long serialVersionUID = -930875945425631349L;
 
     public Baneling() {
-        super("BANELING", 3, 0, 3, 2);
+        super("BANELING", 0, 0, 3, 2);
     }
 
-//    @override
-//    public void attack(CreatureCard target){
-//        super.attack(target);
-////        target.addModifier(new Poison(target));
-//    }
+    @Override
+    public boolean isHasSpecialAttack() {
+        return true;
+    }
+
+    @Override
+    public void specialAttack(CreatureCard target){
+        target.takeDamage(this.getPower());
+        target.addModifier(new Poison(target));
+        addModifier(new CombatFatigue(this));
+    }
 
 }
