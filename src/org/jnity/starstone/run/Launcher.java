@@ -67,6 +67,7 @@ public class Launcher {
 		p2.core();
 		System.out.println(p1.getCreatures());
 		System.out.println(p2.getCreatures());
+		// dfsghhulgsdigsos
 	}
 }
 
