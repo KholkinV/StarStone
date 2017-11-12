@@ -5,5 +5,5 @@ public enum GameEvent {
 	GAME_BEGIN, END_OF_TURN, NEW_TURN,//global game events
 	DRAW, PLAY,//card events
 	ATACKS, DEFENDED,
-	TAKE_DAMAGE, GIVE_DAMAGE, DIES, HEALED,//player and creatures events
+	TAKE_DAMAGE, GIVE_DAMAGE, DIES, HEALED, SET_HITS, SET_POWER//player and creatures events
 }

@@ -58,15 +58,28 @@ public class CreatureCard extends Card {
 		return healingPower;
 	}
 
+	public void setHits(int hits) {
+		if (hits > maxHits)
+			maxHits = hits;
+		changeCurrentHits(hits);
+		getGame().emit(GameEvent.SET_HITS, this);
+	}
+	
+	public void setPower(int power) {
+		this.power = power < this.power ? 0 : power;
+		getGame().emit(GameEvent.SET_POWER, this);
+	}
+	
 	public void changeCurrentHits(int change) {
 		currentHits = Math.min(Math.max(0, currentHits + change), getMaxHits());
-		if(change<0)
+		if (change < 0)
 			getGame().emit(GameEvent.TAKE_DAMAGE, this);
-		if((change>0) && currentHits < getMaxHits())
+		if ((change > 0) && currentHits < getMaxHits())
 			getGame().emit(GameEvent.HEALED, null, this);
-		if (currentHits == 0) 
+		if (currentHits == 0)
 			die();
 	}
+
 	public void die() {
 		getGame().emit(GameEvent.DIES, this);
 		getGame().removeListener(this);
@@ -74,16 +87,17 @@ public class CreatureCard extends Card {
 
 	@Override
 	public String toString() {
-		return super.toString() + " A:" +getPower() + " H:" +getCurrentHits();
+		return super.toString() + " A:" + getPower() + " H:" + getCurrentHits();
 	}
+
 	@Override
 	public void play(CreatureCard target) {
 		super.play(target);
 		addModifier(new SummonSick(this));
 	}
-	
+
 	public boolean canAtack() {
-		if(getPower() <=0)
+		if (getPower() <= 0)
 			return false;
 		boolean result = true;
 		for (Modifier modifier : getModifiers())
@@ -91,7 +105,7 @@ public class CreatureCard extends Card {
 		return result;
 	}
 
-	public void specialAttack(CreatureCard target){
+	public void specialAttack(CreatureCard target) {
 		return;
 	}
 }
