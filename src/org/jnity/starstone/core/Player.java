@@ -91,8 +91,10 @@ public class Player extends CreatureCard implements GameListener{
 		if(!card.canBePlayed())
 			throw new GameException("Card can't be played");
 		hand.remove(card);
-		if(card instanceof CreatureCard) {
-			putCreature(card, position);
+		if(card instanceof CreatureCard &&
+				creatures.size()<MAX_CREATURE_COUNT &&
+				position>-1 && position<MAX_CREATURE_COUNT) {
+			creatures.add(position, (CreatureCard) card);
 		}
 		card.play(target);
 		playedCardCount++;
@@ -100,8 +102,12 @@ public class Player extends CreatureCard implements GameListener{
 
 	public void putCreature(Card card, int position) {
 		if(creatures.size()<MAX_CREATURE_COUNT) {
-			if(position>-1 && position<MAX_CREATURE_COUNT)
+			if(position>-1 && position<MAX_CREATURE_COUNT) {
 				creatures.add(position, (CreatureCard) card);
+				card.setOwner(this);
+				card.setGame(this.getGame());
+				getGame().emit(GameEvent.PUT, card);
+			}
 		}
 	}
 	public boolean hasResoursesFor(Card card) {

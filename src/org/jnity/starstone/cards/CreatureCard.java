@@ -59,14 +59,14 @@ public class CreatureCard extends Card {
 	}
 
 	public void setHits(int hits) {
-		if (hits > maxHits)
+		if (hits > maxHits || hits < maxHits)
 			maxHits = hits;
 		changeCurrentHits(hits);
 		getGame().emit(GameEvent.SET_HITS, this);
 	}
 	
 	public void setPower(int power) {
-		this.power = power < this.power ? 0 : power;
+		this.power = power; 
 		getGame().emit(GameEvent.SET_POWER, this);
 	}
 	

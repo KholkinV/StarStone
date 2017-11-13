@@ -6,6 +6,7 @@ import org.jnity.starstone.events.GameEvent;
 import org.jnity.starstone.events.GameListener;
 import org.jnity.starstone.modifiers.CombatFatigue;
 
+
 public class Reaper extends CreatureCard implements GameListener{
 
     private static final long serialVersionUID = 7038081483022175035L;
@@ -13,7 +14,12 @@ public class Reaper extends CreatureCard implements GameListener{
     private int attackCount = 0;
 
     public Reaper() {
-        super("REAPER", 0, 0, 9, 1);
+        super("REAPER", 3, 0, 3, 2);
+    }
+
+    @Override
+    public void play(CreatureCard target){
+        super.play(target);
     }
 
     @Override

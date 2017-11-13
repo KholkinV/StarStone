@@ -2,7 +2,6 @@ package org.jnity.starstone.zerg.creatures;
 
 import org.jnity.starstone.cards.Card;
 import org.jnity.starstone.cards.CreatureCard;
-import org.jnity.starstone.core.Debug;
 import org.jnity.starstone.events.GameEvent;
 import org.jnity.starstone.events.GameListener;
 import org.jnity.starstone.modifiers.Buff;
@@ -27,13 +26,12 @@ public class Queen extends CreatureCard implements GameListener{
             if(!creatures.get(i).equals(this))
                 creatures.get(i).addModifier(new Buff(creatures.get(i), attackBuff, 0));
         }
-        Debug.print("give attackBuff");
     }
 
     @Override
     public void on(GameEvent gameEvent, Card card) {
 
-        if(GameEvent.PLAY == gameEvent
+        if((GameEvent.PLAY == gameEvent || GameEvent.PUT == gameEvent)
                 && card instanceof CreatureCard
                 && card.getOwner().equals(this.getOwner())){
 

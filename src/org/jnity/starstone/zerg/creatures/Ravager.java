@@ -10,7 +10,7 @@ public class Ravager extends CreatureCard {
     private static final long serialVersionUID = 6702633870724841421L;
 
     public Ravager() {
-        super("RAVAGER", 0, 0, 4, 3);
+        super("RAVAGER", 3, 0, 4, 3);
     }
 
     @Override
